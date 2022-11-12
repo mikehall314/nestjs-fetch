@@ -1,0 +1,47 @@
+{
+  "name": "nestjs-fetch",
+  "version": "0.0.1",
+  "description": "Fetch API as a NestJS provider",
+  "author": "Mike Hall",
+  "license": "MIT",
+  "url": "https://github.com/mikehall314/nestjs-fetch",
+  "scripts": {
+    "clean": "rimraf dist",
+    "format": "prettier --write lib",
+    "lint": "eslint lib",
+    "lint:staged": "lint-staged",
+    "build": "rimraf dist && tsc -p tsconfig.json",
+    "prepare": "husky install",
+    "prepublish:npm": "npm run build",
+    "publish:npm": "npm publish --access public"
+  },
+  "engineStrict": true,
+  "engines": {
+    "node": ">=17.5"
+  },
+  "lint-staged": {
+    "**/*.ts": []
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mikehall314/nestjs-fetch"
+  },
+  "peerDependencies": {
+    "@nestjs/common": "^8.0.0 || ^9.0.0"
+  },
+  "devDependencies": {
+    "@nestjs/common": "^9.2.0",
+    "@types/node": "^16.18.3",
+    "@typescript-eslint/eslint-plugin": "^5.42.1",
+    "@typescript-eslint/parser": "^5.42.1",
+    "eslint": "^8.27.0",
+    "eslint-config-prettier": "^8.5.0",
+    "husky": "^8.0.2",
+    "lint-staged": "^13.0.3",
+    "prettier": "^2.7.1",
+    "reflect-metadata": "^0.1.13",
+    "rimraf": "^3.0.2",
+    "rxjs": "^7.5.7",
+    "typescript": "^4.8.4"
+  }
+}
