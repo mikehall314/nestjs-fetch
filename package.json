@@ -5,6 +5,12 @@
   "author": "Mike Hall",
   "license": "MIT",
   "url": "https://github.com/mikehall314/nestjs-fetch",
+  "keywords": [
+    "http",
+    "fetch",
+    "nestjs",
+    "request"
+  ],
   "scripts": {
     "clean": "rimraf dist",
     "format": "prettier --write lib",
