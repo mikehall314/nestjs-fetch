@@ -1,6 +1,14 @@
 # nestjs-fetch
 
-A thin wrapper around native `fetch()` for use with NestJS.
+A lightweight NestJS wrapper around the native `fetch()` API.
+
+The [Fetch API]() is awesome, but until recently we have needed a library to use
+it with Node. As of Node 18, Fetch is available by default (based on the
+`undici` library). Hurrah! This library wraps a small API around native
+`fetch()` so it can be used in NestJS instead of `@nestjs/axios`.
+
+Note: This is not a drop-in replacement for `@nestjs/axios` or the `HttpModule`.
+It has a completely different API, based on Promises.
 
 ## Installation
 
@@ -44,6 +52,15 @@ export class AppService {
 ```
 
 ### API
+
+The public API presents six helper methods for making HTTP requests. The first
+argument to each method is a URL (either a `URL` object or a string); the second
+argument is an optional list of configuration options.
+
+Each of these helpers returns a `Response` object.
+[This `Response` object](https://developer.mozilla.org/en-US/docs/Web/API/Response)
+is documented over on MDN. You will probably want to await `response.json()` or
+`response.text()` to retrieve the body content.
 
 ```ts
 interface FetchService {
@@ -106,8 +123,8 @@ export class AppModule {}
 
 ## Requirements
 
-- A version of Node with native `fetch()` - `17.5` with `fetch()` flagged on, or
-  `18.0` which has it by default.
+- A version of Node with native `fetch()`; `>=17.5` with `fetch()` flagged on,
+  or `>=18.0` which has `fetch()` enabled by default.
 - NestJS >= 8.x
 
 ## License
