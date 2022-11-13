@@ -2,17 +2,17 @@ name: Node.js CI
 
 on:
   push:
-    branches: [main]
+    branches: [main, develop]
   pull_request:
-    branches: [main]
+    branches: [main, develop]
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
 
     strategy:
       matrix:
-        node-version: [17.x, 18.x, 19.x]
+        node-version: [18.x, 19.x]
 
     steps:
       - uses: actions/checkout@v3
@@ -20,5 +20,15 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
+      - run: npm cit
+
+  test17:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js 17 (fetch enabled)
+        uses: actions/setup-node@v3
+        with:
+          node-version: 17
       - run: npm ci
-      - run: npm run lint
+      - run: node --experimental-fetch node_modules/.bin/jest
