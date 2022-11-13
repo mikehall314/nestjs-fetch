@@ -2,10 +2,11 @@
 
 A lightweight NestJS wrapper around the native `fetch()` API.
 
-The [Fetch API]() is awesome, but until recently we have needed a library to use
-it with Node. As of Node 18, Fetch is available by default (based on the
-`undici` library). Hurrah! This library wraps a small API around native
-`fetch()` so it can be used in NestJS instead of `@nestjs/axios`.
+The [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) is
+awesome, but until recently we have needed a library to use it with Node. As of
+Node 18, Fetch is available by default (based on the `undici` library). Hurrah!
+This library wraps a small API around native `fetch()` so it can be used in
+NestJS instead of `@nestjs/axios`.
 
 Note: This is not a drop-in replacement for `@nestjs/axios` or the `HttpModule`.
 It has a completely different API, based on Promises.
