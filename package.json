@@ -16,7 +16,7 @@
     "format": "prettier --write lib",
     "lint": "eslint lib",
     "lint:staged": "lint-staged",
-    "build": "rimraf dist && tsc -p tsconfig.json",
+    "build": "rimraf dist && tsc -p tsconfig.build.json",
     "prepare": "husky install",
     "prepublish:npm": "npm run build",
     "publish:npm": "npm publish --access public",
