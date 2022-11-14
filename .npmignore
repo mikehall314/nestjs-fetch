@@ -3,3 +3,6 @@ index.ts
 package-lock.json
 tsconfig.json
 prettier.config.js
+.github
+.husky
+.eslintrc.js
