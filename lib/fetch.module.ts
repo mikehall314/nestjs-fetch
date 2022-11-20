@@ -22,7 +22,6 @@ export class FetchModule {
 		return {
 			module: FetchModule,
 			providers: [
-				FetchService,
 				{
 					provide: FETCH_MODULE_OPTIONS,
 					useValue: options,
@@ -34,9 +33,8 @@ export class FetchModule {
 	static registerAsync(options: FetchModuleAsyncOptions): DynamicModule {
 		return {
 			module: FetchModule,
-			imports: options.imports,
+			imports: [...(options.imports || [])],
 			providers: [
-				FetchService,
 				...this.createAsyncProviders(options),
 				...(options.extraProviders || []),
 			],
@@ -52,7 +50,10 @@ export class FetchModule {
 
 		return [
 			this.createAsyncOptionsProvider(options),
-			{ provide: options.useClass, useClass: options.useClass },
+			{
+				provide: options.useClass,
+				useClass: options.useClass,
+			},
 		];
 	}
 
@@ -63,7 +64,7 @@ export class FetchModule {
 			return {
 				provide: FETCH_MODULE_OPTIONS,
 				useFactory: options.useFactory,
-				inject: options.inject || [],
+				inject: [...(options.inject || [])],
 			};
 		}
 
