@@ -9,7 +9,7 @@ This library wraps a small API around native `fetch()` so it can be used in
 NestJS instead of `@nestjs/axios`.
 
 Note: This is not a drop-in replacement for `@nestjs/axios` or the `HttpModule`.
-It has a completely different API, based on Promises.
+It has a completely different API.
 
 ## Installation
 
@@ -28,9 +28,9 @@ import { AppService } from './app.service';
 import { FetchModule } from 'nestjs-fetch';
 
 @Module({
-  imports: [FetchModule],
-  controllers: [AppController],
-  providers: [AppService],
+	imports: [FetchModule],
+	controllers: [AppController],
+	providers: [AppService],
 })
 export class AppModule {}
 ```
@@ -43,12 +43,12 @@ import { FetchService } from 'nestjs-fetch';
 
 @Injectable()
 export class AppService {
-  constructor(private readonly fetch: FetchService) {}
+	constructor(private readonly fetch: FetchService) {}
 
-  async getExample(): Promise<string> {
-    const response = await this.fetch.get('http://example.com/');
-    return response.text();
-  }
+	async getExample(): Promise<string> {
+		const response = await this.fetch.get('http://example.com/');
+		return response.text();
+	}
 }
 ```
 
@@ -65,12 +65,12 @@ is documented over on MDN. You will probably want to await `response.json()` or
 
 ```ts
 interface FetchService {
-  get(url: URL | string, options?: FetchModuleOptions): Promise<Response>;
-  head(url: URL | string, options?: FetchModuleOptions): Promise<Response>;
-  post(url: URL | string, options?: FetchModuleOptions): Promise<Response>;
-  put(url: URL | string, options?: FetchModuleOptions): Promise<Response>;
-  patch(url: URL | string, options?: FetchModuleOptions): Promise<Response>;
-  delete(url: URL | string, options?: FetchModuleOptions): Promise<Response>;
+	get(url: URL | string, options?: FetchModuleOptions): Promise<Response>;
+	head(url: URL | string, options?: FetchModuleOptions): Promise<Response>;
+	post(url: URL | string, options?: FetchModuleOptions): Promise<Response>;
+	put(url: URL | string, options?: FetchModuleOptions): Promise<Response>;
+	patch(url: URL | string, options?: FetchModuleOptions): Promise<Response>;
+	delete(url: URL | string, options?: FetchModuleOptions): Promise<Response>;
 }
 ```
 
@@ -90,9 +90,9 @@ import { AppService } from './app.service';
 import { FetchModule } from 'nestjs-fetch';
 
 @Module({
-  imports: [FetchModule.register({ baseUrl: 'http://example.com' })],
-  controllers: [AppController],
-  providers: [AppService],
+	imports: [FetchModule.register({ baseUrl: 'http://example.com' })],
+	controllers: [AppController],
+	providers: [AppService],
 })
 export class AppModule {}
 ```
@@ -107,17 +107,17 @@ import { FetchModule } from 'nestjs-fetch';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 
 @Module({
-  imports: [
-    FetchModule.registerAsync({
-      imports: [ConfigModule.forRoot()],
-      inject: [ConfigService],
-      useFactory: (config: ConfigService) => {
-        return { keepalive: config.get('ENABLE_KEEPALIVE') };
-      },
-    }),
-  ],
-  controllers: [AppController],
-  providers: [AppService],
+	imports: [
+		ConfigModule.forRoot({ isGlobal: true }),
+		FetchModule.registerAsync({
+			inject: [ConfigService],
+			useFactory(config: ConfigService) {
+				return { keepalive: config.get('ENABLE_KEEPALIVE') };
+			},
+		}),
+	],
+	controllers: [AppController],
+	providers: [AppService],
 })
 export class AppModule {}
 ```
