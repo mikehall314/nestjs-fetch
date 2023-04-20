@@ -56,6 +56,20 @@ describe('FetchService', () => {
 			);
 		});
 
+		it('should resolve a relative URL when base url contains a path', async () => {
+			expect.assertions(1);
+
+			await service.get('/foo', {
+				baseUrl: 'https://example.com/api/products',
+			});
+
+			expect(fetch).toBeCalledWith(
+				expect.objectContaining({
+					url: 'https://example.com/api/products/foo',
+				}),
+			);
+		});
+
 		it('should override baseUrl with absolute URL', async () => {
 			expect.assertions(1);
 

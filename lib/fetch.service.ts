@@ -1,6 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { FETCH_MODULE_OPTIONS } from './fetch.constants';
 import { FetchModuleOptions } from './fetch-module.interface';
+import buildFullPath from './helpers/buildFullPath';
 
 @Injectable()
 export class FetchService {
@@ -18,7 +19,7 @@ export class FetchService {
 		options: FetchModuleOptions,
 	): Request {
 		const { baseUrl, ...init } = { ...this.defaults, ...options };
-		return new Request(new URL(url, baseUrl), init);
+		return new Request(buildFullPath(baseUrl, url), init);
 	}
 
 	get(url: URL | string, options: FetchModuleOptions = {}): Promise<Response> {
