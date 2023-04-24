@@ -4,7 +4,7 @@
 	"description": "Fetch API as a NestJS provider",
 	"author": "Mike Hall, Jakub Leśniak",
 	"license": "MIT",
-	"url": "https://github.com/mikehall314/nestjs-fetch",
+	"url": "https://github.com/kubal5003/nestjs-fetch",
 	"keywords": [
 		"http",
 		"fetch",
@@ -31,7 +31,7 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/mikehall314/nestjs-fetch"
+		"url": "https://github.com/kubal5003/nestjs-fetch"
 	},
 	"peerDependencies": {
 		"@nestjs/common": "^8.0.0 || ^9.0.0"
