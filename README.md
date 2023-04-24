@@ -1,12 +1,12 @@
-# nestjs-fetch
+# nestjs-fetch-module
 
 A lightweight NestJS wrapper around the native `fetch()` API.
 
 The [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) is
 awesome, but until recently we have needed a library to use it with Node. As of
-Node 18, Fetch is available by default (based on the `undici` library). Hurrah!
-This library wraps a small API around native `fetch()` so it can be used in
-NestJS instead of `@nestjs/axios`.
+Node 18, Fetch is available by default (based on the `undici` library). This
+library wraps a small API around native `fetch()` so it can be used in NestJS
+instead of `@nestjs/axios`.
 
 Note: This is not a drop-in replacement for `@nestjs/axios` or the `HttpModule`.
 It has a completely different API.
@@ -14,7 +14,7 @@ It has a completely different API.
 ## Installation
 
 ```bash
-npm install nestjs-fetch
+npm install nestjs-fetch-module
 ```
 
 ### Usage
@@ -25,7 +25,7 @@ Import the `FetchModule` in your application module.
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { FetchModule } from 'nestjs-fetch';
+import { FetchModule } from 'nestjs-fetch-module';
 
 @Module({
 	imports: [FetchModule],
@@ -39,7 +39,7 @@ The `FetchService` is now available as a provider in your application.
 
 ```ts
 import { Injectable } from '@nestjs/common';
-import { FetchService } from 'nestjs-fetch';
+import { FetchService } from 'nestjs-fetch-module';
 
 @Injectable()
 export class AppService {
@@ -87,7 +87,7 @@ Set up as a provider in your app module:
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { FetchModule } from 'nestjs-fetch';
+import { FetchModule } from 'nestjs-fetch-module';
 
 @Module({
 	imports: [FetchModule.register({ baseUrl: 'http://example.com' })],
@@ -103,7 +103,7 @@ Async set up is also supported.
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { FetchModule } from 'nestjs-fetch';
+import { FetchModule } from 'nestjs-fetch-module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 
 @Module({
