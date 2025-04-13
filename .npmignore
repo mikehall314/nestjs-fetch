@@ -5,4 +5,4 @@ tsconfig.json
 prettier.config.js
 .github
 .husky
-.eslintrc.js
+eslint.config.mjs

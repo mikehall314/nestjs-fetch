@@ -33,7 +33,9 @@ describe('FetchService', () => {
 
 			await service.get('https://example.com/');
 
-			expect(fetch).toBeCalledWith(expect.objectContaining({ method: 'GET' }));
+			expect(fetch).toHaveBeenCalledWith(
+				expect.objectContaining({ method: 'GET' }),
+			);
 		});
 
 		it('should fetch an absolute URL', async () => {
@@ -41,7 +43,7 @@ describe('FetchService', () => {
 
 			await service.get('https://example.com/');
 
-			expect(fetch).toBeCalledWith(
+			expect(fetch).toHaveBeenCalledWith(
 				expect.objectContaining({ url: 'https://example.com/' }),
 			);
 		});
@@ -51,7 +53,7 @@ describe('FetchService', () => {
 
 			await service.get('/foo', { baseUrl: 'https://example.com/' });
 
-			expect(fetch).toBeCalledWith(
+			expect(fetch).toHaveBeenCalledWith(
 				expect.objectContaining({ url: 'https://example.com/foo' }),
 			);
 		});
@@ -63,7 +65,7 @@ describe('FetchService', () => {
 				baseUrl: 'https://example.org/',
 			});
 
-			expect(fetch).toBeCalledWith(
+			expect(fetch).toHaveBeenCalledWith(
 				expect.objectContaining({ url: 'https://example.com/' }),
 			);
 		});
@@ -75,7 +77,7 @@ describe('FetchService', () => {
 				cache: 'no-store',
 			});
 
-			expect(fetch).toBeCalledWith(
+			expect(fetch).toHaveBeenCalledWith(
 				expect.objectContaining({ cache: 'no-store' }),
 			);
 		});
@@ -98,7 +100,7 @@ describe('FetchService', () => {
 				cache: 'no-store',
 			});
 
-			expect(fetch).toBeCalledWith(
+			expect(fetch).toHaveBeenCalledWith(
 				expect.objectContaining({ cache: 'no-store', keepalive: true }),
 			);
 		});
@@ -111,7 +113,7 @@ describe('FetchService', () => {
 				keepalive: false,
 			});
 
-			expect(fetch).toBeCalledWith(
+			expect(fetch).toHaveBeenCalledWith(
 				expect.objectContaining({ cache: 'no-store', keepalive: false }),
 			);
 		});
@@ -121,7 +123,9 @@ describe('FetchService', () => {
 
 			await service.get('https://example.com/', { method: 'POST' });
 
-			expect(fetch).toBeCalledWith(expect.objectContaining({ method: 'GET' }));
+			expect(fetch).toHaveBeenCalledWith(
+				expect.objectContaining({ method: 'GET' }),
+			);
 		});
 
 		it('should accept a URL object', async () => {
@@ -129,7 +133,7 @@ describe('FetchService', () => {
 
 			await service.get(new URL('https://example.com/'));
 
-			expect(fetch).toBeCalledWith(
+			expect(fetch).toHaveBeenCalledWith(
 				expect.objectContaining({ url: 'https://example.com/' }),
 			);
 		});
@@ -141,7 +145,9 @@ describe('FetchService', () => {
 
 			await service.head('https://example.com/');
 
-			expect(fetch).toBeCalledWith(expect.objectContaining({ method: 'HEAD' }));
+			expect(fetch).toHaveBeenCalledWith(
+				expect.objectContaining({ method: 'HEAD' }),
+			);
 		});
 	});
 
@@ -151,7 +157,9 @@ describe('FetchService', () => {
 
 			await service.post('https://example.com/');
 
-			expect(fetch).toBeCalledWith(expect.objectContaining({ method: 'POST' }));
+			expect(fetch).toHaveBeenCalledWith(
+				expect.objectContaining({ method: 'POST' }),
+			);
 		});
 	});
 
@@ -161,7 +169,9 @@ describe('FetchService', () => {
 
 			await service.put('https://example.com/');
 
-			expect(fetch).toBeCalledWith(expect.objectContaining({ method: 'PUT' }));
+			expect(fetch).toHaveBeenCalledWith(
+				expect.objectContaining({ method: 'PUT' }),
+			);
 		});
 	});
 
@@ -171,7 +181,7 @@ describe('FetchService', () => {
 
 			await service.patch('https://example.com/');
 
-			expect(fetch).toBeCalledWith(
+			expect(fetch).toHaveBeenCalledWith(
 				expect.objectContaining({ method: 'PATCH' }),
 			);
 		});
@@ -183,7 +193,7 @@ describe('FetchService', () => {
 
 			await service.delete('https://example.com/');
 
-			expect(fetch).toBeCalledWith(
+			expect(fetch).toHaveBeenCalledWith(
 				expect.objectContaining({ method: 'DELETE' }),
 			);
 		});
